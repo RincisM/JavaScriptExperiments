@@ -1,0 +1,41 @@
+/* set font family and size */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* center the heading */
+h1 {
+  text-align: center;
+}
+
+/* style the list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* style the list items */
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* style the part name */
+li::before {
+  content: attr(data-part) ": ";
+  font-weight: bold;
+}
+
+/* style the part features */
+li::after {
+  content: attr(data-features);
+  display: block;
+  margin-top: 5px;
+}
+
+/* add some spacing between list items */
+li + li {
+  margin-top: 10px;
+}
