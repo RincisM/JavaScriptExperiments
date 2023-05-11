@@ -41,12 +41,12 @@ that might be interpreted as a color specifier within the string is not a
 valid color specifier, this function should return a value of null.
 
 
-4.Create a simple calculator which performs three more calculations other 
+4. Create a simple calculator which performs three more calculations other 
 than the basic arithmetic calculations. You must use an external 
 JavaScript file. Name your files calculator.html and calculator.js.
 
 
-5.Create a "To-do list application". Through this 
+5. Create a "To-do list application". Through this 
 application you should be able to add the task. Once you add the task to 
 be get updated in the task list and you click on the next task button the 
 task must be removed from the list and to be displayed in the next task. 
