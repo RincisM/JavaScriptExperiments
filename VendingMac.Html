@@ -65,35 +65,35 @@
         <tr>
           <td>1</td>
           <td>Four-line notebook</td>
-          <td>2</td>
+          <td id="stockCount-1">2</td>
           <td><input type="number" id="quantity-1" value="1" min="1"></td>
           <td><button class="button" onclick="sale(1)">Buy</button></td>
         </tr>
         <tr>
           <td>2</td>
           <td>Two-line notebook</td>
-          <td>10</td>
+          <td id="stockCount-2">10</td>
           <td><input type="number" id="quantity-2" value="1" min="1"></td>
           <td><button class="button" onclick="sale(2)">Buy</button></td>
         </tr>
         <tr>
           <td>3</td>
           <td>HB pencil</td>
-          <td>8</td>
+          <td id="stockCount-3">8</td>
           <td><input type="number" id="quantity-3" value="1" min="1"></td>
           <td><button class="button" onclick="sale(3)">Buy</button></td>
         </tr>
         <tr>
           <td>4</td>
           <td>Eraser</td>
-          <td>3</td>
+          <td id="stockCount-4">3</td>
           <td><input type="number" id="quantity-4" value="1" min="1"></td>
           <td><button class="button" onclick="sale(4)">Buy</button></td>
         </tr>
         <tr>
           <td>5</td>
           <td>Drawing Notebook</td>
-          <td>2</td>
+          <td id="stockCount-5">2</td>
           <td><input type="number" id="quantity-5" value="1" min="1"></td>
           <td><button class="button" onclick="sale(5)">Buy</button></td>
         </tr>
@@ -104,6 +104,58 @@
     
     <p>Total Stationery in Stock: <span id="stock-display"></span></p>
     
-    <script src="scripts/VendingMac.js"></script>
+    <script>
+
+const stockDisplay = document.getElementById("stock-display");
+const statusDisplay = document.getElementById("status");
+
+
+const inventory = [
+  { id: 1, name: "Four-line notebook", stock: 2 },
+  { id: 2, name: "Two-line notebook", stock: 10 },
+  { id: 3, name: "HB pencil", stock: 8 },
+  { id: 4, name: "Eraser", stock: 3 },
+  { id: 5, name: "Drawing Notebook", stock: 2 }
+];
+
+
+let totalStock = 0;
+inventory.forEach(item => {
+  totalStock += item.stock;
+});
+stockDisplay.textContent = totalStock;
+
+
+function sale(id) {
+  const stockCount = document.getElementById(`stockCount-${id}`);
+
+  const quantityInput = document.getElementById(`quantity-${id}`);
+
+
+  const requestedQuantity = parseInt(quantityInput.value);
+
+
+  const item = inventory.find(item => item.id === id);
+
+
+  if (item.stock < requestedQuantity) {
+    statusDisplay.classList.add("error");
+    statusDisplay.textContent = `Sorry, we only have ${item.stock} "${item.name}" left in stock.`;
+  } else {
+    item.stock -= requestedQuantity;
+    stockCount.textContent = item.stock;
+    totalStock -= requestedQuantity;
+    stockDisplay.textContent = totalStock;
+    statusDisplay.classList.remove("error");
+    statusDisplay.classList.add("success");
+    statusDisplay.textContent = `You bought ${requestedQuantity} "${item.name}"!`;
+  }
+  
+  if (totalStock === 0) {
+    alert("Out of Stock");
+  }
+}
+
+    </script>
   </body>
 </html>
