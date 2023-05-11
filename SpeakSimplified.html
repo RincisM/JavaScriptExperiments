@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speak Simplified</title>
+    <link rel="stylesheet" href="styles/SpeakSimplified.css">
+    <script src="scripts/SpeakSimplified.js"></script>
+  </head>
+  <body>
+    <h1>Speak Simplified</h1>
+    <label for="input">Enter a string:</label>
+    <input type="text" id="input">
+    <button id="submit">Submit</button>
+    <p><b>Exclusion</b>: <span id="exclusion"></span></p>
+    <p><b>Strengthen</b>: <span id="strengthen"></span></p>
+    <p><b>Emphasize</b>: <span id="emphasize"></span></p>
+
+    <script>
+      const input = document.getElementById("input");
+      const submit = document.getElementById("submit");
+      const exclusionEl = document.getElementById("exclusion");
+      const strengthenEl = document.getElementById("strengthen");
+      const emphasizeEl = document.getElementById("emphasize");
+
+      submit.addEventListener("click", () => {
+        const str = input.value;
+        exclusionEl.innerText = exclusion(str);
+        strengthenEl.innerText = strengthen(str);
+        emphasizeEl.innerText = emphasize(str);
+      });
+    </script>
+  </body>
+</html>

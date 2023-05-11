@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Computer Parts</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+
+
+    h1 {
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    li::before {
+      content: attr(data-part) ": ";
+      font-weight: bold;
+    }
+
+    li::after {
+      content: attr(data-features);
+      display: block;
+      margin-top: 5px;
+      display: none;
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    li.active::after {
+      display: block;
+    }
+  </style>
+  <script>
+    function toggleFeatures() {
+      this.classList.toggle("active");
+    }
+
+    function addEventListeners() {
+      const listItems = document.querySelectorAll("li");
+
+      listItems.forEach(function(listItem) {
+        listItem.addEventListener("click", toggleFeatures);
+      });
+    }
+  </script>
+</head>
+<body onload="addEventListeners()">
+  <h1>Computer Parts</h1>
+  <ul>
+    <li data-part="Monitors" data-features="LCD Screens, LED Screens, Vibrant Colors"></li>
+    <li data-part="Motherboards" data-features="Fast"></li>
+    <li data-part="Chips" data-features="i9, i7, i5, i3, Core2Duo, Pentium, Very Fast"></li>
+    <li data-part="Hard Drives" data-features="2TB, 1TB, 100-500 GB, Fast Reading"></li>
+    <li data-part="DVD-ROMs" data-features="Burn CDs, Burn DVDs"></li>
+    <li data-part="Cases" data-features="ATX, AT, Mini, Other Sizes, Choice of Colors"></li>
+    <li data-part="Power Supplies" data-features="we can get one for any computer!"></li>
+  </ul>
+</body>
+</html>

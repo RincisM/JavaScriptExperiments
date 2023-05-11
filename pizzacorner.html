@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pizza Order Form</title>
+	<link rel="stylesheet" href="styles/pizzacorner.css">
+</head>
+<body>
+	<h1>Pizza Order Form</h1>
+
+	<form id="order-form">
+		<h2>Size</h2>
+		<label><input type="radio" name="size" value="small"> Small - ₹99</label><br>
+		<label><input type="radio" name="size" value="medium"> Medium - ₹199</label><br>
+		<label><input type="radio" name="size" value="large"> Large - ₹399</label><br>
+
+		<h2>Crust</h2>
+		<label><input type="radio" name="crust" value="thin"> Thin</label><br>
+		<label><input type="radio" name="crust" value="deepPan"> Deep Pan - ₹20 extra</label><br>
+
+		<h2>Toppings</h2>
+		<label><input type="checkbox" name="toppings" value="mushrooms"> Mushrooms - ₹15</label><br>
+		<label><input type="checkbox" name="toppings" value="olives"> Olives - ₹10</label><br>
+		<label><input type="checkbox" name="toppings" value="fingernail"> Fingernail - ₹30</label><br>
+		<label><input type="checkbox" name="toppings" value="spicyBeef"> Spicy Beef - ₹20</label><br>
+
+		<h2>Delivery</h2>
+		<label><input type="checkbox" id="delivery"> Delivery - ₹25 extra</label><br>
+
+		<h2>Total Cost</h2>
+		<p id="total-cost">Total Cost: ₹0</p>
+
+		<button type="submit">Place Order</button>
+	</form>
+
+	<script src="styles/pizzacorner.css"></script>
+</body>
+</html>

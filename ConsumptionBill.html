@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bill Calculator</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bill Calculator</h1>
+    <form>
+      <label for="units">Consumed Units:</label>
+      <input type="number" id="units" name="units">
+      <input type="button" value="Calculate" onclick="calculateBill()">
+    </form>
+    <br>
+    <div id="billDetails"></div>
+    <script>
+      function calculateBill() {
+        const units = parseFloat(document.getElementById("units").value);
+        let totalCharges = 0;
+        let subsidy = 250;
+        if (units > 0 && units <= 100) {
+          totalCharges = 0;
+        } else if (units > 100 && units <= 200) {
+          totalCharges = (units - 100) * 3.75 + 100;
+        } else if (units > 200 && units <= 400) {
+          totalCharges = (units - 200) * 4 + 250 + 100 * 3.75;
+        } else if (units > 400 && units <= 600) {
+          totalCharges = (units - 400) * 4.25 + 300 + 200 * 4 + 100 * 3.75;
+        } else if (units > 600) {
+          totalCharges = (units - 600) * 5 + 400 + 200 * 4 + 200 * 4.25 + 100 * 3.75;
+        }
+        const netAmount = totalCharges - subsidy;
+        const billDetails = `
+          <table>
+            <tr>
+              <th>Description</th>
+              <th>Amount (Rs.)</th>
+            </tr>
+            <tr>
+              <td>Consumed Units:</td>
+              <td>${units.toFixed(1)}</td>
+            </tr>
+            <tr>
+              <td>Total Current Charges Rs.</td>
+              <td>${totalCharges.toFixed(1)}</td>
+            </tr>
+            <tr>
+              <td>Current Charges Rs.</td>
+              <td>${totalCharges.toFixed(1)}</td>
+            </tr>
+            <tr>
+              <td>New Subsidy Rs.(-)</td>
+              <td>${subsidy.toFixed(1)}</td>
+            </tr>
+            <tr>
+              <td>Net Amount Rs.</td>
+              <td>${netAmount.toFixed(1)}</td>
+            </tr>
+          </table>
+        `;
+        document.getElementById("billDetails").innerHTML = billDetails;
+      }
+    </script>
+  </body>
+</html>

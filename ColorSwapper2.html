@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Color Swapper</title>
+  <style>
+    .color-image {
+      border: 5px solid black;
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.7s ease;
+    }
+
+
+    .color-image:nth-child(5) {
+  transform: rotateZ(45deg) translateZ(-75px);
+}
+
+.color-image:nth-child(4) {
+  transform: rotateZ(35deg) translateZ(-50px);
+}
+
+.color-image:nth-child(3) {
+  transform: rotateZ(25deg) translateZ(-25px);
+}
+
+.color-image:nth-child(2) {
+  transform: rotateZ(15deg) translateZ(0px);
+}
+
+.color-image:nth-child(1) {
+  transform: rotateZ(5deg) translateZ(25px);
+}
+
+
+    .card {
+      position: relative;
+      perspective: 1000px;
+      width: 300px;
+      height: 300px;
+      padding: 60px 60px 60px 60px;
+    }
+
+    /*.card.flipped #color-image {
+        transform: rotateX(-480deg);
+      }*/
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .color-image.clicked {
+        transform: rotateZ(5deg) translateZ(15px);
+        z-index: 1;
+      }
+
+      .color-image:not(.clicked) {
+        transform-style: preserve-3d;
+        transition: transform 0.7s ease;
+        z-index: 0;
+      }
+  </style>
+</head>
+
+<body>
+  <h1>Color Swapper</h1>
+  <div class="card" onclick="swapColor()">
+    <img class="color-image" src="images/red.png" alt="colour image">
+    <img class="color-image" src="images/green.png" alt="green">
+    <img class="color-image" src="images/blue.png" alt="blue">
+    <img class="color-image" src="images/yellow.png" alt="yellow">
+    <img class="color-image" src="images/purple.png" alt="purple">
+  </div>
+  <br>
+  <script>
+    const colors = ["images/red.png", "images/green.png", "images/blue.png", "images/yellow.png", "images/purple.png"];
+
+let currentColorIndex = 0;
+const card = document.querySelector(".card");
+const colorImages = document.querySelectorAll(".color-image");
+
+let initialTransforms = [];
+
+function swapColor(event) {
+  const clickedImage = event.target.closest('.color-image');
+  if (clickedImage) {
+    // Remove 'clicked' class from all color images
+    colorImages.forEach((image) => {
+      image.classList.remove('clicked');
+      image.style.transform = initialTransforms[image.dataset.index]; // reset to initial transform
+    });
+    // Add 'clicked' class to the clicked image
+    clickedImage.classList.add('clicked');
+    clickedImage.style.transform = 'translateZ(-75px) rotateZ(-15deg)'; // bring image to the front
+  }
+}
+
+colorImages.forEach((image, index) => {
+  initialTransforms[index] = image.style.transform; // store initial transform
+  image.dataset.index = index; // store index in dataset
+  image.addEventListener('click', swapColor);
+});
+
+
+
+  </script>
+</body>
+
+</html>
