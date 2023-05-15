@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CA5314 : Full Stack Laboratory </title>
+    <style>
+        body {
+            background-image: linear-gradient(180deg, rgb(165, 216, 236), white);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            font-family: Impact, Charcoal, sans-serif;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Code Challenge <span id="year">2023</span></h1>
+        <h2>MCA Association</h2>
+        <ul>
+            <li>AI & Generative AI</li>
+            <li>CX & Digital Experience</li>
+            <li>Code Automation</li>
+            <li>Connected Product and Services</li>
+            <li>Data World and Cloud Computing</li>
+            <li>Quantum Computing</li>
+            <li>Robotics and Quality Engineering</li>
+        </ul>
+    </div>
+
+    <script>
+        const headingnew = document.createElement("h3")
+        const heading = document.querySelector("h2")
+        const date = new Date().toLocaleString();
+        headingnew.append(date);
+        heading.insertAdjacentElement("afterend", headingnew);
+
+        const yearElement = document.querySelector("span");
+        const dateElement = document.querySelector("h3");
+        let i = 0;
+
+        let colors = ["green", "yellow", "red"];
+        yearElement.style.color = colors[2];
+        dateElement.style.background = colors[1];
+        dateElement.style.justifyContent = "center";
+        dateElement.style.border = "black solid 1px";
+        dateElement.style.boxShadow = "3px 3px 3px black";
+        setInterval(() => {
+            if (i > colors.length) {
+                i = 0;
+            }
+            else {
+                yearElement.style.color = colors[i++];
+            }
+
+        }, 3000);
+
+        setInterval(() => {
+            if (i > colors.length) {
+                i = 0;
+            }
+            else {
+                dateElement.style.background = colors[i++];
+            }
+
+        }, 1000);
+
+
+
+        const listElements = document.querySelectorAll("li");
+        for (let i = 0; i < listElements.length; i++) {
+            if (i < 3) {
+                listElements[i].style.background = "green";
+            }
+            else if (i >= 3 && i < 5) {
+                listElements[i].style.background = "yellow";
+            }
+            else {
+                listElements[i].style.background = "red";
+            }
+
+            listElements[i].style.border = "black solid";
+            listElements[i].style.padding = "20px 20px";
+            listElements[i].style.margin = "20px";
+            listElements[i].style.fontFamily = "Impact, Charcoal, sans-serif";
+            listElements[i].style.boxShadow = "3px 3px 3px black";
+        }
+    </script>
+</body>
+
+</html
